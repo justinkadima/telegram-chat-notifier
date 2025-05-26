@@ -1,11 +1,11 @@
-# TelegramNotifier
+# TelegramChatNotifier
 
-A simple Node.js utility to send formatted messages to a Telegram chat using a bot. Supports MarkdownV2 formatting and automatic rate limit handling.
+A simple Node.js library to send formatted messages to a Telegram chat using a bot. Supports MarkdownV2 formatting and automatic rate limit handling.
 
 ## Installation
 
 ```bash
-npm install telegram-notifier
+npm install telegram-chat-notifier
 ```
 
 ## Usage
@@ -26,12 +26,12 @@ Alternatively, you can pass these as options to the function.
 ### 3. Send a Message
 
 ```js
-const { sendMessage } = require('telegram-notifier');
+const { sendMessage } = require('telegram-chat-notifier');
 
 (async () => {
   const result = await sendMessage(
     'Hello',
-    'This is a test message from TelegramNotifier!'
+    'This is a test message!'
   );
   console.log(result);
 })();
@@ -40,7 +40,7 @@ const { sendMessage } = require('telegram-notifier');
 #### With Custom Options
 
 ```js
-const { sendMessage } = require('telegram-notifier');
+const { sendMessage } = require('telegram-chat-notifier');
 
 (async () => {
   const result = await sendMessage(
@@ -63,7 +63,7 @@ You can integrate TelegramNotifier into an Express.js route to send notification
 
 ```js
 const express = require('express');
-const { sendMessage } = require('telegram-notifier');
+const { sendMessage } = require('telegram-chat-notifier');
 
 const app = express();
 app.use(express.json());
