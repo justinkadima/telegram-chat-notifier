@@ -1,6 +1,6 @@
 {
   "name": "telegram-chat-notifier",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple Node.js library to send formatted messages to a Telegram chat using a bot. Supports MarkdownV2 formatting and automatic rate limit handling.",
   "main": "index.js",
   "type": "commonjs",

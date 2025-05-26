@@ -11,8 +11,8 @@ function wait(seconds) {
 }
 
 async function sendMessage(title, body, options = { retries:3}) {
-  const botToken = options.botToken || process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = options.chatId || process.env.TELEGRAM_CHAT_ID;
+  const botToken = options.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = options.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 
   try{
       if (!botToken || !chatId) {

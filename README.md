@@ -47,8 +47,8 @@ const { sendMessage } = require('telegram-chat-notifier');
     'Custom Title',
     'Custom body',
     {
-      botToken: 'YOUR_BOT_TOKEN',
-      chatId: 'YOUR_CHAT_ID',
+      TELEGRAM_BOT_TOKEN: 'YOUR_BOT_TOKEN',
+      TELEGRAM_CHAT_ID: 'YOUR_CHAT_ID',
       retries: 2 // Optional: number of retry attempts on rate limit
     }
   );
@@ -59,24 +59,54 @@ const { sendMessage } = require('telegram-chat-notifier');
 
 ### 4. Example: Using with Express.js
 
-You can integrate TelegramNotifier into an Express.js route to send notifications from your web server:
+You can integrate the Telegram-chat-notifier into an Express.js route to send notifications from your web server:
 
 ```js
 const express = require('express');
-const { sendMessage } = require('telegram-chat-notifier');
+const telegram = require('telegram-chat-notifier');
+
+/* gets the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID from the .env file */
+require('dotenv').config(); 
 
 const app = express();
 app.use(express.json());
 
-app.post('/notify', async (req, res) => {
+app.post('/example1',  (req, res) => {
   const { title, body } = req.body;
-  const result = await sendMessage(title, body);
+ 
+  telegram.sendMessage(title, body);   //"fire and forget" approach.
+
+  return res.send('hello world');
+  
+});
+
+app.post('/example2', async (req, res) => {
+  const { title, body } = req.body;
+  const result = await telegram.sendMessage(title, body);
   if (result.success) {
     res.status(200).json({ message: 'Notification sent!', data: result.data });
   } else {
     res.status(500).json({ error: result.error });
   }
 });
+
+app.post('/example3', async (req, res) => {
+  const { title, body } = req.body;
+  
+  //alternatively you can pass the bot token and the chat id as options
+  const result = await telegram.sendMessage(title, body,{
+      TELEGRAM_BOT_TOKEN: 'YOUR_BOT_TOKEN',
+      TELEGRAM_CHAT_ID: 'YOUR_CHAT_ID'
+  });
+  if (result.success) {
+    res.status(200).json({ message: 'Notification sent!', data: result.data });
+  } else {
+    res.status(500).json({ error: result.error });
+  }
+
+});
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -93,8 +123,8 @@ app.listen(PORT, () => {
 - `title` (string): The message title (will be bolded)
 - `body` (string): The message body
 - `options` (object, optional):
-  - `botToken` (string): Telegram bot token (overrides env var)
-  - `chatId` (string): Telegram chat ID (overrides env var)
+  - `TELEGRAM_BOT_TOKEN` (string): Telegram bot token (overrides env var)
+  - `TELEGRAM_CHAT_ID` (string): Telegram chat ID (overrides env var)
   - `retries` (number): Number of retry attempts on rate limit (default: 3)
 
 **Returns:**

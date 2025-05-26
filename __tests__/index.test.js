@@ -13,7 +13,7 @@ describe('sendMessage', () => {
       json: async () => ({ ok: true, result: { message_id: 1 } }),
       status: 200
     });
-    const result = await sendMessage('Test Title', 'Test Body', { botToken: 'token', chatId: 'chat' });
+    const result = await sendMessage('Test Title', 'Test Body',  { TELEGRAM_BOT_TOKEN: 'token', TELEGRAM_CHAT_ID: 'chat' });
     expect(result.success).toBe(1);
     expect(result.data.result.message_id).toBe(1);
   });
@@ -23,7 +23,7 @@ describe('sendMessage', () => {
       json: async () => ({ ok: false, description: 'Bad Request' }),
       status: 400
     });
-    const result = await sendMessage('Test Title', 'Test Body', { botToken: 'token', chatId: 'chat' });
+    const result = await sendMessage('Test Title', 'Test Body',  { TELEGRAM_BOT_TOKEN: 'token', TELEGRAM_CHAT_ID: 'chat' });
     expect(result.success).toBe(0);
     expect(result.error).toMatch(/Invalid response/);
   });
