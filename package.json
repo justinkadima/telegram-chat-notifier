@@ -1,0 +1,38 @@
+{
+  "name": "telegram-notifier",
+  "version": "1.0.0",
+  "description": "A simple Node.js library to send formatted messages to a Telegram chat using a bot. Supports MarkdownV2 formatting and automatic rate limit handling.",
+  "main": "index.js",
+  "type": "commonjs",
+  "author": "Justin Kadima",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justinkadima/telegram-notifier.git"
+  },
+  "keywords": [
+    "telegram",
+    "notifier",
+    "bot",
+    "notification",
+    "messaging",
+    "markdown",
+    "express"
+  ],
+  "homepage": "https://github.com/justinkadima/telegram-notifier#readme",
+  "bugs": {
+    "url": "https://github.com/justinkadima/telegram-notifier/issues"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "files": [
+    "index.js"
+  ]
+}
